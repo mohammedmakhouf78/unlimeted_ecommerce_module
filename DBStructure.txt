@@ -1,0 +1,123 @@
+User:
+    id: unsignedBigInterger
+    name: string
+    email: string
+    password: string
+    phone: string nullable
+    address: text nullable
+
+Supplier:
+    id: unsignedBigInterger
+    name: string
+    email: string
+    password: string
+    phone: string nullable
+    address: text nullable
+
+Profile:
+    id: unsignedBigInterger
+    profilable_type: morph
+    profilable_id: unsignedBigInterger
+    number_of_orders: unsignedIneger
+    number_of_returns: unsignedIneger
+    should_pay: double default(0)
+    should_be_paid: double default(0)
+
+Unit:
+    id: unsignedBigInterger
+    name: string
+
+Store:
+    id: unsignedBigInterger
+    name: string unique
+    type: enum('store','shop')
+
+Category:
+    id: unsignedBigInterger
+    name: string
+    parent_id: unsignedBigInterger
+
+Products:
+    id: unsignedBigInterger
+    name: string
+    category_id: unsignedBigInterger ==> Category.id
+    supplier_id: unsignedBigInterger ==> Supplier.id
+    main_image: text nullable
+
+
+
+ProductDetails:
+    id: unsignedBigInterger
+    product_id: unsignedBigInterger
+    unit_id: unsignedBigInterger ==> Unit.id
+    store_id: unsignedBigInterger ==> Store.id
+    buy_price: double default(0) السعر الي هنشتري بيه
+    sell_price_trade: double default(0) 
+    sell_price_piece: double default(0) 
+    quantity: float default(0)
+    discount: double default(0)
+    expire_date: date
+
+Reviews:
+    id: unsignedBigInterger
+    product_details_id: unsignedBigInterger ==> ProductDetails.id
+    user_id: unsignedBigInterger ==> User.id
+    review: text
+    rate: int
+
+Cart:
+    id: unsignedBigInterger
+    user_id: unsignedBigInterger ==> User.id
+    product_details_id: unsignedBigInterger ==> ProductDetails.id
+    quantity: float default(0)
+    price: double default(0)
+    total: double default(0)
+    discount: double default(0)
+    total_after_discount: double default(0)
+    
+
+Order:
+    id: unsignedBigInterger
+    orderable_type: morph
+    orderable_id: unsignedBigInterger
+    total: double default(0)
+    discount: double default(0)
+    total_after_discount: double default(0)
+    paid: double default(0)
+    total_payed: double default(0)
+    left: double default(0)
+    status: enum('open','closed')
+    type: enum('sell','buy')
+
+Installments:
+    id: unsignedBigInterger
+    order_id: unsignedBigInterger
+    amount: double default(0)
+
+
+OrderDetails:
+    id: unsignedBigInterger
+    order_id: unsignedBigInterger ==> BuyOrder.id
+    product_details_id: unsignedBigInterger ==> ProductDetails.id
+    quantity: float default(0)
+    price: double default(0)
+    total: double default(0)
+    discount: double default(0)
+    total_after_discount: double default(0)
+
+OrderRetuns:
+    id: unsignedBigInterger
+    order_id: unsignedBigInterger ==> Order.id
+    total: double default(0)
+    status: enum('open','closed')
+
+
+orderReturnsDetails:
+    id: unsignedBigInterger
+    order_return_id: unsignedBigInterger ==> OrderRetuns.id
+    product_details_id: unsignedBigInterger ==> ProductDetails.id
+    quantity: float default(0)
+    price: double default(0)
+    total: double default(0)
+    discount: double default(0)
+    total_after_discount: double default(0)
