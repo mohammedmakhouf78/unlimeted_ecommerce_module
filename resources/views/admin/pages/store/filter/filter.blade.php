@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <select class="form-control" id="order_by" name="order_by">
                         <option value="" >Choose Order</option>
-                        <option value="asc" {{ old('order_by', request()->input('order_by')) == 'asc' ? 'selected' : '' }}>Ascending __{{ old('order_by') == 'asc' ? 'selected' : '' }}</option>
+                        <option value="asc" {{ old('order_by', request()->input('order_by')) == 'asc' ? 'selected' : '' }}>Ascending{{ old('order_by') == 'asc' ? 'selected' : '' }}</option>
                         <option value="desc" {{ old('order_by', request()->input('order_by')) == 'desc' ? 'selected' : '' }}>Descending</option>
                     </select>
                 </div>
