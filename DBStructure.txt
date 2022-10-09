@@ -42,7 +42,6 @@ Products:
     name: string
     category_id: unsignedBigInterger ==> Category.id
     supplier_id: unsignedBigInterger ==> Supplier.id
-    main_image: text nullable
 
 
 
@@ -105,6 +104,12 @@ OrderDetails:
     discount: double default(0)
     total_after_discount: double default(0)
 
+
+
+
+
+
+************************ not needed
 OrderRetuns:
     id: unsignedBigInterger
     order_id: unsignedBigInterger ==> Order.id

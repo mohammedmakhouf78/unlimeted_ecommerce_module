@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('suppliers', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('phone');
-            $table->string('address');
+            $table->morphs('profilable');
+            $table->unsignedInteger('number_of_orders');
+            $table->unsignedInteger('number_of_returns');    
+            $table->double('should_pay')->default(0);    
+            $table->double('should_be_paid')->default(0);    
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('profiles');
     }
 };
