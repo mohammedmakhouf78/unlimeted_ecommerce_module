@@ -24,20 +24,20 @@ class StoreController extends Controller
         $limit_by = (isset(\request()->limit_by) && \request()->limit_by != '') ? \request()->limit_by : '10';
 
 
-        $users = Store::query();
-        // $users = new Store;
+        $data = Store::query();
+        // $data = new Store;
         if($name != null){
-        $users = $users->where('name', 'LIKE', "%" . $name . "%");
+        $data = $data->where('name', 'LIKE', "%" . $name . "%");
         }
         if($type != null){
-        $users = $users->where('type', $type);
+        $data = $data->where('type', $type);
         }
-        $users = $users->orderBy('id',$order_by);
-        $users = $users->paginate($limit_by);
+        $data = $data->orderBy('id',$order_by);
+        $data = $data->paginate($limit_by);
 
         
         return view('admin.pages.store.index',[
-            'stores' => $users
+            'stores' => $data
         ]);
     }
 
