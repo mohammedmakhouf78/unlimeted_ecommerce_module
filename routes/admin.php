@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+
 
 // Admin Routes
 
@@ -20,6 +22,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('destroy/{store}', [StoreController::class, 'destroy'])->name('destroy');
     });
 
+    Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('create', [CategoryController::class, 'create'])->name('create');
+        Route::post('store', [CategoryController::class, 'store'])->name('store');
+        Route::get('edit/{store}', [CategoryController::class, 'edit'])->name('edit');
+        Route::put('update/{store}', [CategoryController::class, 'update'])->name('update');
+        Route::get('destroy/{store}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
 
 
 });
