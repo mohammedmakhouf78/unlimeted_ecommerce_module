@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('is_published')->default(1);
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('supplier_id');
             $table->timestamps();

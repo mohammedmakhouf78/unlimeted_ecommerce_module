@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SupplierController;
 
 // Admin Routes
@@ -38,6 +39,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('edit/{supplier}', [SupplierController::class, 'edit'])->name('edit');
         Route::put('update/{supplier}', [SupplierController::class, 'update'])->name('update');
         Route::get('destroy/{supplier}', [SupplierController::class, 'destroy'])->name('destroy');
+    });
+
+    
+    Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
+        Route::get('createBuyOrderPage', [OrderController::class, 'createBuyOrderPage'])->name('createBuyOrderPage');
+        Route::post('createBuyOrder', [OrderController::class, 'createBuyOrder'])->name('createBuyOrder');
+        
     });
 
 

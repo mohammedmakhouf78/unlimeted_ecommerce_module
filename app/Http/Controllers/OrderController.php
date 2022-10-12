@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
+use App\Models\ProductDetail;
+use App\Models\Supplier;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $supplier;
+
+    public function __construct(Supplier $supplier)
+    {
+        $this->supplier = $supplier;
+    }
+
     public function index()
     {
         return view('admin.pages.buy_order.index', [
@@ -20,5 +22,23 @@ class OrderController extends Controller
         ]);
     }
 
+    public function createBuyOrderPage()
+    {
+        $suppliers = $this->supplier::select(['id','name'])->get();
+        $productDetails = ProductDetail::with([
+            'product:id,name,category_id',
+            'product.category:id,name',
+            'unit:id,name',
+            'store:id,name'
+            ])
+            ->whereHas('product',function($productQuery){
+                return $productQuery->where('is_published',true);
+            })
+            ->get();
 
+        return view('admin.pages.order.createBuyOrderPage',[
+            'suppliers' => $suppliers,
+            'productDetails' => $productDetails,
+        ]);
+    }
 }

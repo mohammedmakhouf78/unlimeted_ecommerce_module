@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\File;
 
 trait ImageTrait
 {
-
     protected function uploadImage($newImag, $path, $oldImag = null)
     {
 

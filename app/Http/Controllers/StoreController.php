@@ -27,14 +27,13 @@ class StoreController extends Controller
         $data = Store::query();
         // $data = new Store;
         if($name != null){
-        $data = $data->where('name', 'LIKE', "%" . $name . "%");
+            $data = $data->where('name', 'LIKE', "%" . $name . "%");
         }
         if($type != null){
-        $data = $data->where('type', $type);
+            $data = $data->where('type', $type);
         }
         $data = $data->orderBy('id',$order_by);
         $data = $data->paginate($limit_by);
-
         
         return view('admin.pages.store.index',[
             'stores' => $data

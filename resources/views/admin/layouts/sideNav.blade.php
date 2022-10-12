@@ -29,6 +29,9 @@
                     <li>
                         <a href="{{route('admin.supplier.index')}}">Supplier </a>
                     </li>
+                    <li>
+                        <a href="{{route('admin.order.createBuyOrderPage')}}">Create Buy Order </a>
+                    </li>
 
                 </ul>
             </li>

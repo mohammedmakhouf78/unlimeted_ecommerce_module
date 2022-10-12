@@ -19,7 +19,8 @@ class ProductFactory extends Factory
     {
         self::$myCount += 1;
         return [
-            'name' => "product__" . self::$myCount
+            'name' => "product__" . self::$myCount,
+            'is_published' => fake()->boolean(70)
         ];
     }
 }

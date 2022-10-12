@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductDetail;
 use App\Models\Profile;
 use App\Models\Store;
 use App\Models\Supplier;
@@ -30,9 +31,7 @@ class FactorySeeder extends Seeder
 
         
 
-        Unit::factory(30)->create();
-
-        Store::factory(5)->create();
+        
 
         Category::factory(3)->create()->each(function($parentCategory){
 
@@ -50,10 +49,25 @@ class FactorySeeder extends Seeder
                     'profilable_id' => $supplier->id
                 ]);
 
-                Product::factory(5)->create([
-                    'category_id' => $parentCategory->id,
-                    'supplier_id' => $supplier->id
-                ]);
+
+                Store::factory(3)->create()->each(function($store) use ($supplier,$parentCategory){
+
+                    Unit::factory(4)->create()->each(function($unit) use ($supplier,$parentCategory, $store){
+
+                        Product::factory(1)->create([
+                            'category_id' => $parentCategory->id,
+                            'supplier_id' => $supplier->id
+                        ])->each(function($product) use($unit,$store){
+
+                            ProductDetail::factory(1)->create([
+                                'product_id' => $product->id,
+                                'unit_id' => $unit->id,
+                                'store_id' => $store->id
+                            ]);
+                        });
+                    });
+                });
+                
             });
         });
         
