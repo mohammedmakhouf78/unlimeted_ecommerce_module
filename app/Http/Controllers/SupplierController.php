@@ -2,20 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSupplierRequest;
-use App\Http\Requests\UpdateSupplierRequest;
 use App\Models\Supplier;
+use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request as HttpRequest;
 
 class SupplierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $name     = (isset(\request()->name) && \request()->name != '') ? \request()->name : null;
+        $email     = (isset(\request()->email) && \request()->email != '') ? \request()->email : null;
+        $address     = (isset(\request()->address) && \request()->address != '') ? \request()->address : null;
+        $phone     = (isset(\request()->phone) && \request()->phone != '') ? \request()->phone : null;
+        $order_by = (isset(\request()->order_by) && \request()->order_by != '') ? \request()->order_by : 'desc';
+        $limit_by = (isset(\request()->limit_by) && \request()->limit_by != '') ? \request()->limit_by : '10';
+
+
+        $data = Supplier::query();
+        if($name != null){
+        $data = $data->where('name', 'LIKE', "%" . $name . "%");
+        }
+        if($email != null){
+        $data = $data->where('email', $email);
+        }
+        if($address != null){
+        $data = $data->where('address', $address);
+        }
+        if($phone != null){
+        $data = $data->where('phone', $phone);
+        }
+
+        $data = $data->orderBy('id',$order_by);
+        $data = $data->paginate($limit_by);
+
+        return view('admin.pages.supplier.index',[
+            'suppliers' => $data
+        ]);
+
     }
 
     /**
@@ -34,7 +57,7 @@ class SupplierController extends Controller
      * @param  \App\Http\Requests\StoreSupplierRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSupplierRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -68,7 +91,7 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSupplierRequest $request, Supplier $supplier)
+    public function update(Request $request, Supplier $supplier)
     {
         //
     }

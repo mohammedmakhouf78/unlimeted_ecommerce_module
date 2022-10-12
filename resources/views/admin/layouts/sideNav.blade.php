@@ -26,6 +26,9 @@
                     <li>
                         <a href="{{route('admin.store.index')}}">Store </a>
                     </li>
+                    <li>
+                        <a href="{{route('admin.supplier.index')}}">Supplier </a>
+                    </li>
 
                 </ul>
             </li>
