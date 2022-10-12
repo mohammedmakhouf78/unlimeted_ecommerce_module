@@ -15,6 +15,20 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('CASCADE')->onUpdate('CASCADE');
+
+
+            $table->unsignedBigInteger('product_details_id');
+            $table->foreign('product_details_id')->references('id')->on('product_details')->onDelete('CASCADE')->onUpdate('CASCADE');
+
+
+            $table->float('quantity', 8, 2)->default(0);
+            $table->double('price', 8, 2)->default(0);
+            $table->double('total', 8, 2)->default(0);
+            $table->double('discount', 8, 2)->default(0);
+            $table->double('total_after_discount', 8, 2)->default(0);
             $table->timestamps();
         });
     }
