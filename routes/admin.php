@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\SupplierController;
 
 // Admin Routes
 
@@ -29,6 +29,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('edit/{store}', [CategoryController::class, 'edit'])->name('edit');
         Route::put('update/{store}', [CategoryController::class, 'update'])->name('update');
         Route::get('destroy/{store}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::group(['prefix' => 'supplier', 'as' => 'supplier.'], function () {
+        Route::get('/', [SupplierController::class, 'index'])->name('index');
+        Route::get('create', [SupplierController::class, 'create'])->name('create');
+        Route::post('store', [SupplierController::class, 'store'])->name('store');
+        Route::get('edit/{supplier}', [SupplierController::class, 'edit'])->name('edit');
+        Route::put('update/{supplier}', [SupplierController::class, 'update'])->name('update');
+        Route::get('destroy/{supplier}', [SupplierController::class, 'destroy'])->name('destroy');
     });
 
 
