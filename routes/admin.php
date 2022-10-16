@@ -6,6 +6,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\SupplierController;
 
 // Admin Routes
@@ -46,6 +47,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('createBuyOrderPage', [OrderController::class, 'createBuyOrderPage'])->name('createBuyOrderPage');
         Route::post('createBuyOrder', [OrderController::class, 'createBuyOrder'])->name('createBuyOrder');
         
+    });
+
+
+    Route::group(['prefix' => 'productDetail', 'as' => 'productDetail.'], function () {
+        Route::get('getProductDetails', [ProductDetailController::class, 'getProductDetails'])->name('getProductDetails');
+        
+        Route::get('getProductDetail/{productDetail}', [ProductDetailController::class, 'getProductDetail'])->name('getProductDetail');
     });
 
 
