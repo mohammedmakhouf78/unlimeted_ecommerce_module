@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\ProductDetail;
 use App\Models\Supplier;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -25,20 +26,15 @@ class OrderController extends Controller
     public function createBuyOrderPage()
     {
         $suppliers = $this->supplier::select(['id','name'])->get();
-        $productDetails = ProductDetail::with([
-            'product:id,name,category_id',
-            'product.category:id,name',
-            'unit:id,name',
-            'store:id,name'
-            ])
-            ->whereHas('product',function($productQuery){
-                return $productQuery->where('is_published',true);
-            })
-            ->get();
+        
 
         return view('admin.pages.order.createBuyOrderPage',[
             'suppliers' => $suppliers,
-            'productDetails' => $productDetails,
         ]);
+    }
+
+    public function createBuyOrder(Request $request)
+    {
+        dd($request);
     }
 }

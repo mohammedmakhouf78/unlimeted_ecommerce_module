@@ -83,4 +83,30 @@ class ProductDetailController extends Controller
     {
         //
     }
+    public function getProductDetail(ProductDetail $productDetail)
+    {
+        return response()->json([
+            'status' => 200,
+            'productDetail' => $productDetail
+        ]);
+    }
+
+    public function getProductDetails()
+    {
+        $productDetails = ProductDetail::with([
+            'product:id,name,category_id',
+            'product.category:id,name',
+            'unit:id,name',
+            'store:id,name'
+            ])
+            ->whereHas('product',function($productQuery){
+                return $productQuery->where('is_published',true);
+            })
+            ->get();
+
+        return response()->json([
+            'status' => 200,
+            'productDetails' => $productDetails
+        ]);
+    }
 }
