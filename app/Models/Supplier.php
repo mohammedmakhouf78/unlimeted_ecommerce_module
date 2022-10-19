@@ -15,4 +15,9 @@ class Supplier extends Model
         'address',
         'phone'
     ];
+
+    public function profile()
+    {
+        return $this->morphOne(Profile::class,'profilable');
+    }
 }
