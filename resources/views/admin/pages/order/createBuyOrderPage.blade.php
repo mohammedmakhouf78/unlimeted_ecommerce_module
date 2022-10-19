@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="widget-content widget-content-area">
-                <form method="POST" action="{{route('admin.order.createBuyOrder')}}">
+                <form method="POST" action="{{ route('admin.order.createBuyOrder') }}">
                     @csrf
 
                     <div class="row">
@@ -25,13 +25,14 @@
                             <select name="supplier_id" id="supplier_id" class="form-control">
                                 <option value="">Choose Supplier</option>
                                 @foreach ($suppliers as $supplier)
-                                    <option value="{{$supplier->id}}">{{$supplier->name}}</option>
+                                    <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col">
                             <label for="">Total</label>
-                            <input type="number" step=".01" name="order_total" id="order_total" class="form-control">
+                            <input type="number" step=".01" name="order_total" id="order_total" readonly
+                                class="form-control text-black">
                         </div>
                         <div class="col">
                             <label for="">Discount</label>
@@ -39,10 +40,12 @@
                         </div>
                     </div>
 
+
                     <div class="row mb-5">
                         <div class="col">
                             <label for="">Total After Discount</label>
-                            <input type="number" name="order_total_after_discount" id="order_total_after_discount" class="form-control">
+                            <input type="number" name="order_total_after_discount" id="order_total_after_discount" readonly
+                                class="form-control text-black">
                         </div>
                         <div class="col">
                             <label for="">Paid</label>
@@ -50,7 +53,7 @@
                         </div>
                         <div class="col">
                             <label for="">Left</label>
-                            <input type="number" name="left" id="left" class="form-control">
+                            <input type="number" name="left" id="left" readonly class="form-control text-black">
                         </div>
                     </div>
 
@@ -68,7 +71,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+
                             </tbody>
                         </table>
                     </div>
@@ -85,13 +88,12 @@
         let count = 1;
         $.ajax({
             url: "/admin/productDetail/getProductDetails",
-            success: function(response) {
-            },
+            success: function(response) {},
             error: function(res) {
                 console.log(res);
             }
-        }).then(function(res){
-            $('#addOrderItem').on('click',function(){
+        }).then(function(res) {
+            $('#addOrderItem').on('click', function() {
                 $('table tbody').append(`
                     <tr>
                         <td>
@@ -122,13 +124,15 @@
                     `)
                 });
 
-                $('.product_detail_id').on('change',function(){
+                $('.product_detail_id').on('change', function() {
                     $.ajax({
                         url: "/admin/productDetail/getProductDetail/" + this.value,
                         success: (response) => {
                             let productDetail = response.productDetail
-                            $(this).parent().parent().find('#buy_price').val(productDetail.buy_price)
-                            $(this).parent().parent().find('#discount').val(productDetail.discount)
+                            $(this).parent().parent().find('#buy_price').val(
+                                productDetail.buy_price)
+                            $(this).parent().parent().find('#discount').val(
+                                productDetail.discount)
                         },
                         error: function(res) {
                             console.log(res);
@@ -136,12 +140,13 @@
                     })
                 })
 
-                $('.quantity').on('input',function(){
+                $('.quantity').on('input', function() {
                     let quantity = $(this).val()
                     let buy_price = $(this).parent().parent().find('#buy_price').val()
                     let discount = $(this).parent().parent().find('#discount').val()
                     let total = $(this).parent().parent().find('#total').val(quantity * buy_price)
-                    let total_after_discount = $(this).parent().parent().find('#total_after_discount').val((quantity * buy_price) - discount)
+                    let total_after_discount = $(this).parent().parent().find(
+                        '#total_after_discount').val((quantity * buy_price) - discount)
 
                     calculateOrderTotal()
                     calculateOrderTotalAfterDiscount()
@@ -149,12 +154,13 @@
 
                 })
 
-                $('.buy_price').on('input',function(){
+                $('.buy_price').on('input', function() {
                     let buy_price = $(this).val()
                     let quantity = $(this).parent().parent().find('#quantity').val()
                     let discount = $(this).parent().parent().find('#discount').val()
                     let total = $(this).parent().parent().find('#total').val(quantity * buy_price)
-                    let total_after_discount = $(this).parent().parent().find('#total_after_discount').val((quantity * buy_price) - discount)
+                    let total_after_discount = $(this).parent().parent().find(
+                        '#total_after_discount').val((quantity * buy_price) - discount)
 
                     calculateOrderTotal()
                     calculateOrderTotalAfterDiscount()
@@ -162,11 +168,12 @@
 
                 })
 
-                $('.discount').on('input',function(){
+                $('.discount').on('input', function() {
                     let discount = $(this).val()
                     let quantity = $(this).parent().parent().find('#quantity').val()
                     let buy_price = $(this).parent().parent().find('#buy_price').val()
-                    let total_after_discount = $(this).parent().parent().find('#total_after_discount').val((quantity * buy_price) - discount)
+                    let total_after_discount = $(this).parent().parent().find(
+                        '#total_after_discount').val((quantity * buy_price) - discount)
                 })
 
 
@@ -179,29 +186,35 @@
 
         })
 
-        
-        function calculateOrderTotal()
-        {
+
+        function calculateOrderTotal() {
             let sum = 0;
-            $('.total').each(function(index,element){
+            $('.total').each(function(index, element) {
                 sum += parseFloat(element.value) ? parseFloat(element.value) : 0
             })
             $('#order_total').val(sum.toFixed(2))
         }
 
-        function calculateOrderTotalAfterDiscount()
-        {
+        function calculateOrderTotalAfterDiscount() {
             let order_total = $('#order_total').val()
-            let order_discount = $('#order_discount').val()
-            order_total = parseFloat(order_total) ? parseFloat(order_total) : 0
-            order_discount = parseFloat(order_discount) ? parseFloat(order_discount) : 0
+            let order_discount_input = $('#order_discount') ;
+            console.log(order_discount_input.val());
+            if(parseFloat(order_discount_input.val()) >= order_total){
+                order_discount_input.val(order_total)
+            }
 
-            $('#order_total_after_discount').val(order_total + order_discount)
+            order_total = parseFloat(order_total) ? parseFloat(order_total) : 0
+            order_discount = parseFloat(order_discount_input.val()) ? parseFloat(order_discount_input.val()) : 0
+
+            $('#order_total_after_discount').val(parseFloat(order_total - order_discount))
+
+
+
+
         }
 
 
-        function calculateLeft()
-        {
+        function calculateLeft() {
             let order_total_after_discount = $('#order_total_after_discount').val()
             let paid = $('#paid').val()
 
@@ -211,22 +224,19 @@
             $('#left').val(order_total_after_discount - paid)
         }
 
-        $('#order_total').on('change',function(){
+        $('#order_total').on('change', function() {
             calculateOrderTotalAfterDiscount()
             calculateLeft()
         })
 
 
-        $('#order_discount').on('input',function(){
+        $('#order_discount').on('input', function() {
             calculateOrderTotalAfterDiscount()
             calculateLeft()
         })
 
-        $('#paid').on('input',function(){
+        $('#paid').on('input', function() {
             calculateLeft()
         })
-
-
-
     </script>
 @endpush
