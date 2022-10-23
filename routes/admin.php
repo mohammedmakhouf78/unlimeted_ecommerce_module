@@ -28,9 +28,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('create', [CategoryController::class, 'create'])->name('create');
         Route::post('store', [CategoryController::class, 'store'])->name('store');
-        Route::get('edit/{store}', [CategoryController::class, 'edit'])->name('edit');
-        Route::put('update/{store}', [CategoryController::class, 'update'])->name('update');
-        Route::get('destroy/{store}', [CategoryController::class, 'destroy'])->name('destroy');
+        Route::get('edit/{category}', [CategoryController::class, 'edit'])->name('edit');
+        Route::put('update/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::get('destroy/{category}', [CategoryController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix' => 'supplier', 'as' => 'supplier.'], function () {

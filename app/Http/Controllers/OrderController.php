@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderCreateRequest;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\ProductDetail;
@@ -37,7 +38,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function createBuyOrder(Request $request)
+    public function createBuyOrder(OrderCreateRequest $request)
     {
         $order = Order::find(2);
 

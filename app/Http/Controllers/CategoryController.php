@@ -28,7 +28,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::get();
+        return view('admin.pages.category.create',compact('categories'));
     }
 
     /**
@@ -39,7 +40,12 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        Category::create([
+            'name' => $request->name,
+            'parent_id' => $request->parent_id ?? 0
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -73,7 +79,12 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update([
+            'name' => $request->name,
+            'parent_id' => $request->parent_id
+        ]);
+        
+        return redirect()->back();
     }
 
     /**
@@ -84,6 +95,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->back();
     }
 }
