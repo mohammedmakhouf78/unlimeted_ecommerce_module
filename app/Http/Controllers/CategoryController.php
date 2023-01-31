@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Traits\CategoryTrait;
 use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    use CategoryTrait;
     /**
      * Display a listing of the resource.
      *
@@ -44,6 +46,8 @@ class CategoryController extends Controller
             'name' => $request->name,
             'parent_id' => $request->parent_id ?? 0
         ]);
+
+        $this->setCategoriesInRedis();
 
         return redirect()->back();
     }
@@ -83,6 +87,8 @@ class CategoryController extends Controller
             'name' => $request->name,
             'parent_id' => $request->parent_id
         ]);
+
+        $this->setCategoriesInRedis();
         
         return redirect()->back();
     }
@@ -96,6 +102,9 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
+        $this->setCategoriesInRedis();
+        
         return redirect()->back();
     }
 }

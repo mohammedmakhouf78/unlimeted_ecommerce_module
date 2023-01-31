@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laratrust\Traits\LaratrustUserTrait;
 
 class Supplier extends Model
 {
+    use LaratrustUserTrait;
     use HasFactory;
     protected $fillable = [
         'name',
@@ -19,5 +21,10 @@ class Supplier extends Model
     public function profile()
     {
         return $this->morphOne(Profile::class,'profilable');
+    }
+
+    public function roleUser()
+    {
+        return $this->morphOne(RoleUser::class, 'user');
     }
 }

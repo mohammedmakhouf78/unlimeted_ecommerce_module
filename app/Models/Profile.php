@@ -15,4 +15,9 @@ class Profile extends Model
     {
         return $query->where('profilable_type',Supplier::class)->where('profilable_id',$id);
     }
+
+    public function profilable()
+    {
+        return $this->morphTo('profilable');
+    }
 }
