@@ -1,4 +1,4 @@
-@extends('endUser.master')
+{{-- @extends('endUser.master')
 <!-- Start Main Header Page -->
 @section('title-page', 'SHOPE')
 <!-- End Main Header Page -->
@@ -7,285 +7,108 @@
 
 
 
+    <a href="{{route('socialite.redirect',"github")}}" class="btn btn-primary">Sign Up With GitHub</a>
+    <a href="{{route('socialite.redirect',"google")}}" class="btn btn-primary">Sign Up With Google</a>
 
-    <div class="container">
 
-        <div class="wrap-breadcrumb">
-            <ul>
-                <li class="item-link"><a href="#" class="link">home</a></li>
-                <li class="item-link"><span>Digital & Electronics</span></li>
-            </ul>
-        </div>
-        <div class="row">
-
-            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
-
-                <div class="banner-shop">
-                    <a href="#" class="banner-link">
-                        <figure><img src="{{asset('endUserAssets/images/shop-banner.jpg')}}" alt=""></figure>
-                    </a>
-                </div>
-
-                <div class="wrap-shop-control">
-
-                    <h1 class="shop-title">Digital & Electronics</h1>
-
-                    <div class="wrap-right">
-
-                        <div class="sort-item orderby ">
-                            <select name="orderby" class="use-chosen">
-                                <option value="menu_order" selected="selected">Default sorting</option>
-                                <option value="popularity">Sort by popularity</option>
-                                <option value="rating">Sort by average rating</option>
-                                <option value="date">Sort by newness</option>
-                                <option value="price">Sort by price: low to high</option>
-                                <option value="price-desc">Sort by price: high to low</option>
-                            </select>
-                        </div>
-
-                        <div class="sort-item product-per-page">
-                            <select name="post-per-page" class="use-chosen">
-                                <option value="12" selected="selected">12 per page</option>
-                                <option value="16">16 per page</option>
-                                <option value="18">18 per page</option>
-                                <option value="21">21 per page</option>
-                                <option value="24">24 per page</option>
-                                <option value="30">30 per page</option>
-                                <option value="32">32 per page</option>
-                            </select>
-                        </div>
-
-                        <div class="change-display-mode">
-                            <a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i>Grid</a>
-                            <a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>
-                        </div>
-
-                    </div>
-
-                </div>
-                <!--end wrap shop control-->
-
-                <div class="row">
-                    <ul class="product-list grid-products equal-container">
-
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_20.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_22.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_10.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_01.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_21.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_15.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_17.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_05.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_07.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_02.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_09.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('endUserAssets/images/products/digital_06.jpg')}}"
-                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                            Speaker [White]</span></a>
-                                    <div class="wrap-price"><span class="product-price">$250.00</span></div>
-                                    <a href="#" class="btn add-to-cart">Add To Cart</a>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <div class="wrap-pagination-info">
-                    <ul class="page-numbers">
-                        <li><span class="page-number-item current">1</span></li>
-                        <li><a class="page-number-item" href="#">2</a></li>
-                        <li><a class="page-number-item" href="#">3</a></li>
-                        <li><a class="page-number-item next-link" href="#">Next</a></li>
-                    </ul>
-                    <p class="result-count">Showing 1-8 of 12 result</p>
-                </div>
-            </div>
-            <!--end main products area-->
-
-            @include('endUser.layouts.sitebar')
-            <!--end sitebar-->
-
-        </div>
-        <!--end row-->
-
-    </div>
     <!--end container-->
 
-@endsection
+@endsection --}}
 
+
+
+
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel 8 Phone Number OTP Auth Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5" style="max-width: 550px">
+        <div class="alert alert-danger" id="error" style="display: none;"></div>
+        <h3>Add Phone Number</h3>
+        <div class="alert alert-success" id="successAuth" style="display: none;"></div>
+        <form>
+            <label>Phone Number:</label>
+            <input type="text" id="number" class="form-control" placeholder="+91 ********">
+            <div id="recaptcha-container"></div>
+            <button type="button" class="btn btn-primary mt-3" onclick="sendOTP();">Send OTP</button>
+        </form>
+
+        <div class="mb-5 mt-5">
+            <h3>Add verification code</h3>
+            <div class="alert alert-success" id="successOtpAuth" style="display: none;"></div>
+            <form>
+                <input type="text" id="verification" class="form-control" placeholder="Verification code">
+                <button type="button" class="btn btn-danger mt-3" onclick="verify()">Verify code</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    {{-- <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script> --}}
+
+    <script>
+        // var firebaseConfig = {
+        //     apiKey: "API_KEY",
+        //     authDomain: "PROJECT_ID.firebaseapp.com",
+        //     databaseURL: "https://PROJECT_ID.firebaseio.com",
+        //     projectId: "PROJECT_ID",
+        //     storageBucket: "PROJECT_ID.appspot.com",
+        //     messagingSenderId: "SENDER_ID",
+        //     appId: "APP_ID"
+        // };
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyA36EYXugNfk5DGX82SriwPeDP48WjAD3M",
+            authDomain: "unlimited-c645e.firebaseapp.com",
+            projectId: "unlimited-c645e",
+            storageBucket: "unlimited-c645e.appspot.com",
+            messagingSenderId: "1080568750785",
+            appId: "1:1080568750785:web:afcdfab8205e77d96a6a40",
+            measurementId: "G-6D57482E4B"
+        };
+
+    const app = initializeApp(firebaseConfig);
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            render();
+        };
+        function render() {
+            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+            recaptchaVerifier.render();
+        }
+        function sendOTP() {
+            var number = $("#number").val();
+            firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function (confirmationResult) {
+                window.confirmationResult = confirmationResult;
+                coderesult = confirmationResult;
+                console.log(coderesult);
+                $("#successAuth").text("Message sent");
+                $("#successAuth").show();
+            }).catch(function (error) {
+                $("#error").text(error.message);
+                $("#error").show();
+            });
+        }
+        function verify() {
+            var code = $("#verification").val();
+            coderesult.confirm(code).then(function (result) {
+                var user = result.user;
+                console.log(user);
+                $("#successOtpAuth").text("Auth is successful");
+                $("#successOtpAuth").show();
+            }).catch(function (error) {
+                $("#error").text(error.message);
+                $("#error").show();
+            });
+        }
+    </script>
+</body>
+</html>
 
 

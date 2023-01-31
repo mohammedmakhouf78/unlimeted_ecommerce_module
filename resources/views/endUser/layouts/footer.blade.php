@@ -322,6 +322,38 @@
 
 @include('sweetalert::alert')
 
+
+
+
+{{-- 
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyA36EYXugNfk5DGX82SriwPeDP48WjAD3M",
+      authDomain: "unlimited-c645e.firebaseapp.com",
+      projectId: "unlimited-c645e",
+      storageBucket: "unlimited-c645e.appspot.com",
+      messagingSenderId: "1080568750785",
+      appId: "1:1080568750785:web:afcdfab8205e77d96a6a40",
+      measurementId: "G-6D57482E4B"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script> --}}
+
+
+
+
+
 @stack('js')
 
 </body>

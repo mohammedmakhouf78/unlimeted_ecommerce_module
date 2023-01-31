@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EndUser\HomeController;
 
@@ -18,9 +19,7 @@ use App\Http\Controllers\EndUser\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-Route::group(['prefix' => '', 'as' => '.'], function () {
-
+Route::group(['prefix' => 'social/auth', 'as' => 'socialite.'], function () {
+    Route::get('redirect/{drive}', [AuthController::class, 'redirect'])->name('redirect');
+    Route::get('callback/{drive}', [AuthController::class, 'callback'])->name('callback');
 });
-
-
-
